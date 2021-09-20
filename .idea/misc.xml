@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Projects/Codez/app/src/main/res/drawable-v24/btn_blue_selector.xml" value="0.32685185185185184" />
+        <entry key="..\:/Projects/Codez/app/src/main/res/drawable-v24/btn_yellow_pressed.xml" value="0.23489583333333333" />
+        <entry key="..\:/Projects/Codez/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.35648148148148145" />
+        <entry key="..\:/Projects/Codez/app/src/main/res/drawable-v24/ic_signal_wifi_off_white_24dp.xml" value="0.35648148148148145" />
+        <entry key="..\:/Projects/Codez/app/src/main/res/drawable-v24/ic_tick.xml" value="0.35648148148148145" />
+        <entry key="..\:/Projects/Codez/app/src/main/res/drawable/ic_launcher_background.xml" value="0.35648148148148145" />
+        <entry key="..\:/Projects/Codez/app/src/main/res/layout/activity_main.xml" value="0.18819655521783182" />
+        <entry key="..\:/Projects/Codez/app/src/main/res/layout/activity_test.xml" value="0.3813405797101449" />
+        <entry key="..\:/Projects/Codez/app/src/main/res/layout/content_main.xml" value="0.21875" />
+        <entry key="..\:/Projects/Codez/app/src/main/res/layout/dialog_code_edit.xml" value="0.3813405797101449" />
+        <entry key="..\:/Projects/Codez/app/src/main/res/layout/dialog_connectify_error.xml" value="0.21875" />
+        <entry key="..\:/Projects/Codez/app/src/main/res/layout/dialog_connectify_success.xml" value="0.21875" />
+        <entry key="..\:/Projects/Codez/app/src/main/res/layout/dialog_drake_error.xml" value="0.21875" />
+        <entry key="..\:/Projects/Codez/app/src/main/res/layout/dialog_drake_success.xml" value="0.37681159420289856" />
+        <entry key="..\:/Projects/Codez/app/src/main/res/layout/dialog_emoji.xml" value="0.37681159420289856" />
+        <entry key="..\:/Projects/Codez/app/src/main/res/layout/dialog_emotion.xml" value="0.37228260869565216" />
+        <entry key="..\:/Projects/Codez/app/src/main/res/layout/dialog_flash.xml" value="0.37228260869565216" />
+        <entry key="..\:/Projects/Codez/app/src/main/res/layout/dialog_flat.xml" value="0.37228260869565216" />
+        <entry key="..\:/Projects/Codez/app/src/main/res/layout/dialog_rainbow.xml" value="0.37228260869565216" />
+        <entry key="..\:/Projects/Codez/app/src/main/res/layout/dialog_toaster.xml" value="0.37681159420289856" />
+        <entry key="..\:/Projects/Codez/app/src/main/res/layout/fragment_first.xml" value="0.3813405797101449" />
+        <entry key="..\:/Projects/Codez/app/src/main/res/layout/fragment_second.xml" value="0.1" />
+        <entry key="..\:/Projects/Codez/app/src/main/res/layout/item_search.xml" value="0.38697916666666665" />
+        <entry key="..\:/Projects/Codez/app/src/main/res/layout/item_view.xml" value="0.3813405797101449" />
+        <entry key="..\:/Projects/Codez/app/src/main/res/menu/menu_main.xml" value="0.38697916666666665" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
