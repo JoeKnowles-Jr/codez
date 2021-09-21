@@ -26,6 +26,8 @@ class AcAdapter(private val mContext: Context,
         val item: Item = suggestions[position]
         val numaddress = v?.findViewById(R.id.tv_numaddress) as TextView?
         numaddress?.text = String.format("%d %s", item.number, item.street)
+        val codes = v?.findViewById(R.id.tv_codes) as TextView?
+        codes?.text = item.codesString
         return v!!
     }
 
@@ -45,7 +47,7 @@ class AcAdapter(private val mContext: Context,
                     val numString = String.format("%d", item.number)
                     println("$numString numString")
                     if (
-                        numString.lowercase().contains(constraint.toString().lowercase()) ||
+                        numString.lowercase().startsWith(constraint.toString().lowercase()) ||
                                 item.street.lowercase().startsWith(constraint.toString().lowercase())
                     ) {
                         suggestions.add(item)

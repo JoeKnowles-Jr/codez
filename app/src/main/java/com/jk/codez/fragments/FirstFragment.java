@@ -1,5 +1,6 @@
 package com.jk.codez.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,9 @@ import com.jk.codez.ad.DialogType;
 import com.jk.codez.databinding.FragmentFirstBinding;
 import com.loopj.android.http.TextHttpResponseHandler;
 
+import java.util.Date;
+import java.util.Objects;
+
 import cz.msebera.android.httpclient.Header;
 
 public class FirstFragment extends Fragment {
@@ -45,13 +49,10 @@ public class FirstFragment extends Fragment {
 
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mViewModel = new ViewModelProvider(requireActivity()).get(CodezViewModel.class);
-//        mViewModel.getCodes().observe(getViewLifecycleOwner(), items -> {
-//            mAdapter = new ItemAdapter(items,null);
-//            binding.rvCodes.setAdapter(mAdapter);
-//        });
 
         mViewModel.getCodes().observe(getViewLifecycleOwner(), items -> {
             mAdapter = new ItemAdapter(items, null);
@@ -59,8 +60,9 @@ public class FirstFragment extends Fragment {
             binding.searchView.setAdapter(
                     new AcAdapter(requireContext(), R.layout.item_search, items)
             );
+            binding.rvCodes.setVisibility(View.VISIBLE);
+            binding.pb.setVisibility(View.GONE);
         });
-
 
         ItemClickSupport.addTo(binding.rvCodes)
                 .setOnItemClickListener((recyclerView, position, view1) -> {
@@ -72,7 +74,13 @@ public class FirstFragment extends Fragment {
                     return true;
                 });
 
-        binding.rvCodes.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
+        DividerItemDecoration div = new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);
+
+        div.setDrawable(getResources().getDrawable(R.drawable.divider_blue, requireActivity().getTheme()));
+
+        binding.rvCodes.addItemDecoration(div);
+
+        binding.tvDate.setText(new Date().toString());
 
         binding.fab1.setOnClickListener(view1 -> showDialog(null));
     }
@@ -85,6 +93,7 @@ public class FirstFragment extends Fragment {
         builder.setMessage("Message");
 
         builder.setItem(item == null ? new Item() : item);
+        builder.setIsEdit(item != null);
 
         builder.setButtonClickListener(new ButtonClickListener() {
             @Override

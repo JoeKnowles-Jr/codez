@@ -79,7 +79,7 @@ class AestheticDialog {
          * @return this, for chaining.
          */
         @NonNull
-        fun setIsEdit(): Boolean {
+        fun getIsEdit(): Boolean {
             return this.isEdit
         }
 
@@ -334,7 +334,10 @@ class AestheticDialog {
                         btnClickListener.onSave(this)
                     }
                     btnCancel.setOnClickListener { onClickListener.onDismiss(this) }
-                    btnDelete.setOnClickListener { if (isEdit) btnClickListener.onDelete(this) }
+                    btnDelete.setOnClickListener {
+                        println(isEdit)
+                        if (isEdit) btnClickListener.onDelete(this)
+                    }
 
                     layoutDialog.setBackgroundColor(ContextCompat.getColor(activity, R.color.dark_background))
 

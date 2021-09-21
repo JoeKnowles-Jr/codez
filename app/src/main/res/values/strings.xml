@@ -24,4 +24,5 @@
     <string name="delete">Delete</string>
     <string name="editcode">Edit Code</string>
     <string name="stats">Stats</string>
+    <string name="search_here">Search Here</string>
 </resources>
