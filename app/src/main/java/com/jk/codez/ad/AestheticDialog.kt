@@ -19,7 +19,6 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
 import com.jk.codez.Item
-import com.jk.codez.ButtonClickListener
 import com.jk.codez.R
 import java.text.SimpleDateFormat
 import java.util.*
@@ -301,9 +300,17 @@ class AestheticDialog {
         fun show(): AestheticDialog {
 
             when (dialogStyle) {
+                DialogStyle.ITEM -> {
+                    layoutView = activity.layoutInflater.inflate(R.layout.item_search_detail, null)
+                    val numaddress = layoutView.findViewById<TextView>(R.id.tv_numaddress_detail)
+                    numaddress.text = String.format("%d %s", this.code.number, this.code.street)
+                    val codes = layoutView.findViewById<TextView>(R.id.tv_codes_detail)
+                    codes.text = this.code.codesString
+                    val notes = layoutView.findViewById<TextView>(R.id.tv_notes_detail)
+                    notes.text = this.code.notes
+                }
                 DialogStyle.CODEZ -> {
                     layoutView = activity.layoutInflater.inflate(R.layout.dialog_code_edit, null)
-                    val layoutDialog = layoutView.findViewById<LinearLayout>(R.id.ll_code_edit)
                     val tvMode = layoutView.findViewById<TextView>(R.id.tv_mode)
                     val etNum = layoutView.findViewById<EditText>(R.id.etNum)
                     val etStreet = layoutView.findViewById<EditText>(R.id.etStreet)
@@ -319,13 +326,9 @@ class AestheticDialog {
                     } else {
                         tvMode.text = activity.getText(R.string.addcode)
                     }
-                    etNum.setTextColor(ContextCompat.getColor(activity, R.color.md_white_1000))
                     etStreet.setText(this.code.street)
-                    etStreet.setTextColor(ContextCompat.getColor(activity, R.color.md_white_1000))
                     if (this.code.codes != null) etCodes.setText(this.code.codesString)
-                    etCodes.setTextColor(ContextCompat.getColor(activity, R.color.md_white_1000))
                     etNotes.setText(this.code.notes)
-                    etNotes.setTextColor(ContextCompat.getColor(activity, R.color.md_white_1000))
                     btnSave.setOnClickListener {
                         this.code.number = etNum.text.toString().toIntOrNull()
                         this.code.street = etStreet.text.toString()
@@ -338,8 +341,6 @@ class AestheticDialog {
                         println(isEdit)
                         if (isEdit) btnClickListener.onDelete(this)
                     }
-
-                    layoutDialog.setBackgroundColor(ContextCompat.getColor(activity, R.color.dark_background))
 
                     dialogBuilder.setView(layoutView)
                     alertDialog = dialogBuilder.create()
@@ -416,6 +417,7 @@ class AestheticDialog {
                         textMessage.text = message
                         textTitle.text = title
                         when (dialogType) {
+                            DialogType.ITEM -> {}
                             DialogType.CODEZ -> {}
                             DialogType.ERROR -> {
                                 textTitle.setTextColor(ContextCompat.getColor(activity, R.color.dialog_error))
@@ -460,6 +462,7 @@ class AestheticDialog {
                         textMessage.text = message
                         textTitle.text = title
                         when (dialogType) {
+                            DialogType.ITEM -> {}
                             DialogType.CODEZ -> {}
                             DialogType.ERROR -> {
                                 verticalView.setBackgroundColor(ContextCompat.getColor(activity, R.color.dialog_error))
@@ -496,6 +499,7 @@ class AestheticDialog {
                     val icon: AppCompatImageView = layoutView.findViewById(R.id.dialog_icon_rainbow)
                     val layoutDialog = layoutView.findViewById<RelativeLayout>(R.id.dialog_layout_rainbow)
                     when (dialogType) {
+                        DialogType.ITEM -> {}
                         DialogType.CODEZ -> {}
                         DialogType.ERROR -> {
                             layoutDialog.setBackgroundColor(ContextCompat.getColor(activity, R.color.dialog_error))
@@ -634,6 +638,7 @@ class AestheticDialog {
                         val layoutDialog: LinearLayoutCompat = layoutView.findViewById(R.id.dialog_layout_flat)
                         val frameLayout = layoutView.findViewById<FrameLayout>(R.id.dialog_frame_flat)
                         when (dialogType) {
+                            DialogType.ITEM -> {}
                             DialogType.CODEZ -> {}
                             DialogType.ERROR -> {
                                 icon.setImageResource(R.drawable.ic_error_red_24dp)
@@ -681,6 +686,7 @@ class AestheticDialog {
                         val layoutDialog: LinearLayoutCompat = layoutView.findViewById(R.id.dialog_layout_flat)
                         val frameLayout = layoutView.findViewById<FrameLayout>(R.id.dialog_frame_flat)
                         when (dialogType) {
+                            DialogType.ITEM -> {}
                             DialogType.CODEZ -> {}
                             DialogType.ERROR -> {
                                 icon.setImageResource(R.drawable.ic_error_red_24dp)

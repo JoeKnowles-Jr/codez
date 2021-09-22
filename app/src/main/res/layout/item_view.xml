@@ -9,17 +9,23 @@
 
         <TextView
             android:id="@+id/tv_address"
+            android:textColor="@color/blue_200"
+            android:textSize="19sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <TextView
             android:layout_below="@id/tv_address"
             android:id="@+id/tv_codes"
+            android:textColor="@color/blue_200"
+            android:textSize="19sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/tv_notes"
+            android:textColor="@color/blue_200"
+            android:textSize="19sp"
             android:layout_below="@id/tv_codes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

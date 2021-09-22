@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:id="@+id/ll_code_edit"
+    android:background="#666"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -31,7 +32,7 @@
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
         android:hint="@string/numhint"
-        android:textColorHint="#337777CC"
+        android:textColorHint="@color/blue_500"
         android:importantForAutofill="no" />
     <EditText
         android:id="@+id/etStreet"
@@ -46,7 +47,7 @@
         android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif"
         android:importantForAutofill="no"
-        android:textColorHint="#33777777"
+        android:textColorHint="@color/blue_500"
         android:hint="@string/street"/>
     <EditText
         android:id="@+id/etCodes"
@@ -60,7 +61,7 @@
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
         android:importantForAutofill="no"
-        android:textColorHint="#33777777"
+        android:textColorHint="@color/blue_500"
         android:hint="@string/code" />
     <EditText
         android:id="@+id/etNotes"
@@ -75,7 +76,7 @@
         android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif"
         android:importantForAutofill="no"
-        android:textColorHint="#33777777"
+        android:textColorHint="@color/blue_500"
         android:hint="@string/notes"/>
 
     <LinearLayout
