@@ -1,5 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:id="@+id/ll_code_edit"
@@ -79,6 +79,33 @@
         android:textColorHint="@color/blue_500"
         android:hint="@string/notes"/>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+        <Button
+            android:id="@+id/move_pin_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/cardview_dark_background"
+            android:text="@string/set_pin"
+            android:textColor="@android:color/white"
+            tools:ignore="RelativeOverlap" />
+
+        <com.mapbox.mapboxsdk.maps.MapView
+            android:id="@+id/mv_edit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            mapbox:mapbox_cameraTargetLat="32.9777"
+            mapbox:mapbox_cameraTargetLng="-96.749"
+            mapbox:mapbox_cameraZoom="17" />
+
+    </RelativeLayout>
+
+
     <LinearLayout
         tools:ignore="ButtonStyle"
         android:orientation="horizontal"
@@ -88,6 +115,7 @@
         <Button
             android:id="@+id/btnSave"
             android:layout_width="0dp"
+            android:textSize="13sp"
             android:background="#33333333"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -96,6 +124,7 @@
         <Button
             android:id="@+id/btnCancel"
             android:layout_width="0dp"
+            android:textSize="13sp"
             android:background="#33333333"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -104,6 +133,7 @@
         <Button
             android:id="@+id/btnDelete"
             android:layout_width="0dp"
+            android:textSize="13sp"
             android:background="#33333333"
             android:layout_weight="1"
             android:layout_height="wrap_content"

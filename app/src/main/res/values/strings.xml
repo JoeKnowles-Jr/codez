@@ -1,6 +1,8 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Codez</string>
     <string name="action_stats">Stats</string>
+    <string name="access_token" translatable="false" tools:ignore="Typos">pk.eyJ1IjoiamtoaXBwaWUiLCJhIjoiY2pkd3ZwcmZsMXpxNzJwdDN0Zmhxc3p2YyJ9.j0Fgr_VMf4h5sMU0vhHjLw</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">Codez</string>
     <string name="second_fragment_label">Stats</string>
@@ -25,4 +27,9 @@
     <string name="editcode">Edit Code</string>
     <string name="stats">Stats</string>
     <string name="search_here">Search Here</string>
+    <string name="set_pin">Set Pin</string>
+    <string name="set_position">Set Position</string>
+    <string name="user_location_permission_explanation">Need your location</string>
+    <string name="user_location_permission_not_granted">WHERE ARE YOU?!</string>
+    <string name="place_pin">Place Pin</string>
 </resources>

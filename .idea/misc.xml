@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Projects/Android/codez/codez/app/src/main/res/layout-v28/item_detail.xml" value="0.21875" />
+        <entry key="..\:/Projects/Android/codez/codez/app/src/main/res/layout/activity_pin_set.xml" value="0.38697916666666665" />
+        <entry key="..\:/Projects/Android/codez/codez/app/src/main/res/layout/dialog_code_edit.xml" value="0.276268115942029" />
+        <entry key="..\:/Projects/Android/codez/codez/app/src/main/res/layout/fragment_first.xml" value="0.21875" />
+        <entry key="..\:/Projects/Android/codez/codez/app/src/main/res/layout/item_detail.xml" value="0.21875" />
         <entry key="..\:/Projects/Codez/app/src/main/res/drawable-v24/btn_blue_normal.xml" value="0.34629629629629627" />
         <entry key="..\:/Projects/Codez/app/src/main/res/drawable-v24/btn_blue_selector.xml" value="0.32685185185185184" />
         <entry key="..\:/Projects/Codez/app/src/main/res/drawable-v24/btn_yellow_pressed.xml" value="0.23489583333333333" />

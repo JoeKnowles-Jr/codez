@@ -7,11 +7,13 @@ import java.util.Locale;
 
 public class Item {
 
-    public Item(Integer number, String street, String[] codes, String notes) {
+    public Item(Integer number, String street, String[] codes, String notes, Double lat, Double lng) {
         this.number = number;
         this.street = street;
         this.codes = codes;
         this.notes = notes;
+        this.lat = lat;
+        this.lng = lng;
     }
 
     public Item() {
@@ -19,13 +21,15 @@ public class Item {
         this.street = "";
         this.codes = null;
         this.notes = "";
+        this.lat = null;
+        this.lng = null;
     }
 
     @NonNull
     @Override
     public String toString() {
-        return String.format(Locale.getDefault(), "%d %s - %d codes - %s",
-                number, street, codes.length, notes);
+        return String.format(Locale.getDefault(), "%d %s - %d codes - %s\n%f - %f",
+                number, street, codes.length, notes, lat, lng);
     }
 
     public String getStreet() {
@@ -85,9 +89,24 @@ public class Item {
         this._id = _id;
     }
 
+    public Double getLat() { return lat; }
+
+    public void setLat(Double lat) { this.lat = lat; }
+
+    public Double getLng() { return lng; }
+
+    public void setLng(Double lng) { this.lng = lng; }
+
+    public Boolean getPrecise() { return precise; }
+
+    public void setPrecise(Boolean precise) { this.precise = precise; }
+
     String _id;
     Integer number;
     String street;
     String[] codes;
     String notes;
+    public Double lat;
+    public Double lng;
+    public Boolean precise;
 }

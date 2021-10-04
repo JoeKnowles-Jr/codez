@@ -16,25 +16,28 @@ private static final String CODEZ_URL = "http://api.joeknowles.com/codez";
     }
 
     public static void addCode(@NonNull final Item item, final TextHttpResponseHandler handler) {
-        RequestParams rp =  new RequestParams("number", item.getNumber());
-        rp.put("street", item.getStreet());
-        rp.put("codes", item.getCodesString());
-        rp.put("notes", item.getNotes());
-        System.out.println(rp.toString());
-        new AsyncHttpClient().post(CODEZ_URL + "/post",rp, handler);
+        new AsyncHttpClient().post(CODEZ_URL + "/post", createParams(item), handler);
     }
 
     public static void editCode(@NonNull final Item item, final TextHttpResponseHandler handler) {
+        new AsyncHttpClient().put(CODEZ_URL + "/put", createParams(item), handler);
+    }
+
+    public static void deleteCode(String cid, final TextHttpResponseHandler handler) {
+        new AsyncHttpClient().delete(CODEZ_URL + "/delete/" + cid, handler);
+    }
+
+    @NonNull
+    private static RequestParams createParams(@NonNull Item item) {
         RequestParams params = new RequestParams("cid", item._id);
         params.put("number", item.getNumber());
         params.put("street", item.getStreet());
         params.put("codes", item.getCodesString());
         params.put("notes", item.getNotes());
-        new AsyncHttpClient().put(CODEZ_URL + "/put", params, handler);
-    }
-
-    public static void deleteCode(String cid, final TextHttpResponseHandler handler) {
-        new AsyncHttpClient().delete(CODEZ_URL + "/delete/" + cid, handler);
+        params.put("lat", item.getLat());
+        params.put("lng", item.getLng());
+        params.put("precise", item.getPrecise());
+        return params;
     }
 }
 
