@@ -284,6 +284,7 @@ class AestheticDialog {
         @NonNull
         fun setAnimation(animation: DialogAnimation): Builder {
             this.animation = animation
+            this.chooseAnimation()
             return this
         }
 

@@ -12,12 +12,12 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +25,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -48,7 +47,6 @@ import com.jk.codez.ad.ButtonClickListener;
 import com.jk.codez.ad.DialogAnimation;
 import com.jk.codez.ad.DialogStyle;
 import com.jk.codez.databinding.FragmentFirstBinding;
-import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
@@ -65,7 +63,8 @@ import com.mapbox.mapboxsdk.style.layers.Layer;
 import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 
-import java.util.Date;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class FirstFragment extends Fragment implements LocationListener {
 
@@ -74,14 +73,13 @@ public class FirstFragment extends Fragment implements LocationListener {
     private FragmentFirstBinding binding;
     private ItemAdapter mAdapter;
     private CodezViewModel mViewModel;
-    private final Handler handler = new Handler();
-    private Runnable runnable;
     private LocationComponent mLocationComponent;
     private LocationManager mLocationManager;
     private MapView mMapView;
     private MapboxMap mMapboxMap;
     private ImageView hoveringMarker;
     private Layer droppedMarkerLayer;
+    private boolean searchReverse = false;
 
     // Register the permissions callback, which handles the user's response to the
 // system permissions dialog. Save the return value, an instance of
@@ -147,10 +145,18 @@ public class FirstFragment extends Fragment implements LocationListener {
 
         binding.rvCodes.addItemDecoration(div);
 
-        binding.tvDate.setText(new Date().toString());
-
         binding.fab1.setOnClickListener(view1 -> showDialog(null));
-        showDate();
+
+        binding.btnNumber.setOnClickListener(v -> mViewModel.sortListByNumber(searchReverse));
+
+        binding.btnStreet.setOnClickListener(v -> mViewModel.sortListByStreet(searchReverse));
+
+        binding.btnReverse.setOnClickListener(v -> reverseSearch());
+    }
+
+    private void reverseSearch() {
+        searchReverse = !searchReverse;
+        binding.btnReverse.setTextColor(searchReverse ? Color.GREEN : Color.BLACK);
     }
 
     @SuppressLint("MissingPermission")
@@ -175,7 +181,7 @@ public class FirstFragment extends Fragment implements LocationListener {
                         mViewModel.deleteCode(dialog);
                     }
                 })
-                .setAnimation(DialogAnimation.ZOOM);
+                .setAnimation(DialogAnimation.IN_OUT);
         this.mMapView = builder.getMapView();
         assert this.mMapView != null;
         this.mMapView.getMapAsync(map -> {
@@ -223,9 +229,9 @@ public class FirstFragment extends Fragment implements LocationListener {
             // You can use the API that requires the permission.
             Location location = getLM().getLastKnownLocation(bestProvider);
             if (location != null) {
-                final double latitude = location.getLatitude();
-                final double longitude = location.getLongitude();
-                Toast.makeText(requireContext(), "latitude:" + latitude + " longitude:" + longitude, Toast.LENGTH_SHORT).show();
+//                final double latitude = location.getLatitude();
+//                final double longitude = location.getLongitude();
+//                Toast.makeText(requireContext(), "latitude:" + latitude + " longitude:" + longitude, Toast.LENGTH_SHORT).show();
             } else {
                 getLM().requestLocationUpdates(bestProvider, 1000, 0, this);
             }
@@ -250,7 +256,6 @@ public class FirstFragment extends Fragment implements LocationListener {
         if (ContextCompat.checkSelfPermission(
                 requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) ==
                 PackageManager.PERMISSION_GRANTED) {
-            // You can use the API that requires the permission.
             displayItemDialog(item);
         } else if (shouldShowRequestPermissionRationale("ACCESS_FINE_LOCATION")) {
             // In an educational UI, explain to the user why your app requires this
@@ -265,17 +270,6 @@ public class FirstFragment extends Fragment implements LocationListener {
             requestPermissionLauncher.launch(
                     Manifest.permission.ACCESS_FINE_LOCATION);
         }
-    }
-
-    private void showDate() {
-        runnable = new Runnable() {
-            @Override
-            public void run() {
-                binding.tvDate.setText(new Date().toString());
-                handler.postDelayed(this, 1000);
-            }
-        };
-        handler.postDelayed(runnable, 1000);
     }
 
     @SuppressLint("MissingPermission")
@@ -307,7 +301,7 @@ public class FirstFragment extends Fragment implements LocationListener {
             }
         });
 
-        builder.setAnimation(DialogAnimation.SHRINK);
+        builder.setAnimation(DialogAnimation.FADE);
         View v = builder.getLayout();
         this.mMapView = v.findViewById(R.id.mv_edit);
         Button selectLocationButton = v.findViewById(R.id.move_pin_set);
@@ -420,7 +414,6 @@ public class FirstFragment extends Fragment implements LocationListener {
     @Override
     public void onResume() {
         super.onResume();
-        showDate();
         if (mMapView != null) {
             mMapView.onResume();
         }
@@ -445,7 +438,6 @@ public class FirstFragment extends Fragment implements LocationListener {
     @Override
     public void onPause() {
         super.onPause();
-        handler.removeCallbacks(runnable);
         if (mMapView != null) {
             mMapView.onPause();
         }

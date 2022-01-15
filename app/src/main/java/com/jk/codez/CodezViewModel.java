@@ -10,12 +10,18 @@ import com.loopj.android.http.TextHttpResponseHandler;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Objects;
 
 import cz.msebera.android.httpclient.Header;
 
 public class CodezViewModel extends ViewModel {
     MutableLiveData<ArrayList<Item>> items = new MutableLiveData<>();
+
+    Comparator<Item> sortByNumber = Comparator.comparing(Item::getNumber);
+    Comparator<Item> sortByStreet = Comparator.comparing(Item::getStreet);
+    Comparator<Item> sortByCodes = Comparator.comparing(Item::getCodesString);
 
     public void setCodes(ArrayList<Item> codes) {
         this.items = new MutableLiveData<>(codes);
@@ -26,6 +32,18 @@ public class CodezViewModel extends ViewModel {
         System.out.println(items.getValue() == null ? "Null" : "Mot null");
         if (this.items.getValue() == null) refreshCodes();
         return this.items;
+    }
+
+    public void sortListByNumber(boolean searchReverse) {
+        ArrayList<Item> itemList = items.getValue();
+        Objects.requireNonNull(itemList).sort(searchReverse ? sortByNumber.reversed() : sortByNumber);
+        items.setValue(itemList);
+    }
+
+    public void sortListByStreet(boolean searchReverse) {
+        ArrayList<Item> itemList = items.getValue();
+        Objects.requireNonNull(itemList).sort(searchReverse ? sortByStreet.reversed() : sortByStreet);
+        items.setValue(itemList);
     }
 
     private void refreshCodes() {
