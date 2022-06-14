@@ -9,7 +9,7 @@ import com.loopj.android.http.TextHttpResponseHandler;
 import org.json.JSONObject;
 
 public class Network {
-private static final String CODEZ_URL = "http://api.joeknowles.com/codez";
+private static final String CODEZ_URL = "*******";
 
     public static void getCodes(final TextHttpResponseHandler handler) {
         new AsyncHttpClient().get(CODEZ_URL + "/get", handler);
@@ -42,7 +42,6 @@ private static final String CODEZ_URL = "http://api.joeknowles.com/codez";
 }
 
 //    }
-//    private static final String USER_URL = "http://api.joeknowles.com/cx/user";
 // GET
 // POST /cx/auth
 //    public static void authenticateUser(final String username, final String password, final AsyncHttpResponseHandler handler) {
